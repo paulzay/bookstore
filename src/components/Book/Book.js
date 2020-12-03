@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import './book.css';
 
 function Book({
@@ -25,9 +24,4 @@ Book.propTypes = {
   deleteBook: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  deleteBook: id => {
-    dispatch({ id, type: 'REMOVE_BOOK' });
-  },
-});
-export default connect(null, mapDispatchToProps)(Book);
+export default Book;
