@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import uuid from 'uuid-random';
-import { createBook } from '../../redux/actions/index';
 import './bookform.css';
 
 function BooksForm({ createBook }) {
@@ -50,12 +48,12 @@ BooksForm.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   createBook: book => {
-    dispatch(createBook({
+    dispatch({
       id: book.id,
       type: 'CREATE_BOOK',
       title: book.title,
       category: book.category,
-    }));
+    });
   },
 });
 
