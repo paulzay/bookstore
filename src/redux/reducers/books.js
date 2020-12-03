@@ -1,25 +1,16 @@
 import BookActionTypes from '../actions/actionTypes';
+import initialState from './initialState';
 
-const INITIAL_STATE = [
-  {
-    id: Math.floor(Math.random() * 100),
-    title: 'Divergent',
-    category: 'Horror',
-  },
-  {
-    id: Math.floor(Math.random() * 100),
-    title: 'Star Wars',
-    category: 'Sci-Fi',
-  },
-];
-
-export default function bookReducer(state = INITIAL_STATE, action) {
+export default function books(state = initialState.books, action) {
   switch (action.type) {
     case BookActionTypes.CREATE_BOOK:
-      return [...state, { ...action.book }];
+      return [...state, {
+        id: action.id,
+        title: action.title,
+        category: action.category,
+      }];
     case BookActionTypes.REMOVE_BOOK:
-      return [...state.slice(0, action.index),
-        ...state.slice(action.index + 1, state.length)];
+      return state.filter(book => book.id !== action.id);
     default:
       return state;
   }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Book from '../../components/Book/Book';
 import './booklist.css';
 
-function BookList({ books }) {
+function BookList({ books, deleteBook }) {
   return (
     <table className="table">
       <thead>
@@ -17,7 +17,7 @@ function BookList({ books }) {
       <tbody>
         {
           books.map(book => (
-            <Book key={book.id} book={book} />
+            <Book key={book.id} book={book} deleteBook={deleteBook} />
           ))
         }
       </tbody>
@@ -25,11 +25,19 @@ function BookList({ books }) {
   );
 }
 
+BookList.propTypes = {
+  books: PropTypes.instanceOf(Array).isRequired,
+  deleteBook: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({
   books: state.books,
 });
 
-BookList.propTypes = {
-  books: PropTypes.instanceOf(Array).isRequired,
-};
-export default connect(mapStateToProps, null)(BookList);
+const mapDispatchToProps = dispatch => ({
+  deleteBook: id => {
+    dispatch({ id, type: 'REMOVE_BOOK' });
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookList);

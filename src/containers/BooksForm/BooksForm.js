@@ -1,35 +1,60 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
-import Select from 'react-select';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import './bookform.css';
 
-const options = [
-  { value: 'action', label: 'Action' },
-  { value: 'biography', label: 'Biography' },
-  { value: 'history', label: 'History' },
-  { value: 'horror', label: 'Horror' },
-  { value: 'kids', label: 'Kids' },
-  { value: 'learning', label: 'Learning' },
-  { value: 'sci-fi', label: 'Sci-FI' },
-];
+function BooksForm({ createBook }) {
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('Action');
 
-function BooksForm() {
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (title && category) {
+      createBook({
+        id: Math.floor(Math.random() * 100),
+        title,
+        category,
+      });
+    }
+    setTitle('');
+  };
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="title">
           Title
-          <input type="text" id="title" name="title" />
+          <input type="text" id="title" name="title" value={title} onChange={e => setTitle(e.target.value)} />
         </label>
-        <Select options={options} />
+        <strong>Select Category:</strong>
+        <select value={category} onChange={e => setCategory(e.target.value)}>
+          <option value="action">Action</option>
+          <option value="biography">Biography</option>
+          <option value="history">History</option>
+          <option value="horror">Horror</option>
+          <option value="kids">Kids</option>
+          <option value="learning">Learning</option>
+          <option value="sci-fi">Sci-Fi</option>
+        </select>
         <button type="submit">Create Book</button>
       </form>
     </>
   );
 }
 
-// BooksForm.propTypes = {
-//   book: PropTypes.object.isRequired,
-// };
+BooksForm.propTypes = {
+  createBook: PropTypes.func.isRequired,
+};
 
-export default BooksForm;
+const mapDispatchToProps = dispatch => ({
+  createBook: book => {
+    dispatch({
+      id: book.id,
+      type: 'CREATE_BOOK',
+      title: book.title,
+      category: book.category,
+    });
+  },
+});
+
+export default connect(null, mapDispatchToProps)(BooksForm);
