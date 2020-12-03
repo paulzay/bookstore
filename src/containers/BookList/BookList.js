@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Book from '../../components/Book/Book';
-import { deleteBook } from '../../redux/actions/index';
 import './booklist.css';
 
 function BookList({ books, deleteBook }) {
