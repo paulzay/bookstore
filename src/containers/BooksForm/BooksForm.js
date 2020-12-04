@@ -5,8 +5,17 @@ import './bookform.css';
 
 function BooksForm({ createBook }) {
   const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('Action');
+  const [category, setCategory] = useState('');
 
+  const categories = [
+    'Action',
+    'Biography',
+    'Horror',
+    'History',
+    'Kids',
+    'Learning',
+    'Sci-Fi',
+  ];
   const handleSubmit = e => {
     e.preventDefault();
     if (title && category) {
@@ -17,6 +26,7 @@ function BooksForm({ createBook }) {
       });
     }
     setTitle('');
+    setCategory('');
   };
 
   return (
@@ -27,14 +37,13 @@ function BooksForm({ createBook }) {
           <input type="text" id="title" name="title" value={title} onChange={e => setTitle(e.target.value)} />
         </label>
         <strong>Select Category:</strong>
-        <select value={category} onChange={e => setCategory(e.target.value)}>
-          <option value="action">Action</option>
-          <option value="biography">Biography</option>
-          <option value="history">History</option>
-          <option value="horror">Horror</option>
-          <option value="kids">Kids</option>
-          <option value="learning">Learning</option>
-          <option value="sci-fi">Sci-Fi</option>
+        <select onChange={e => setCategory(e.target.value)}>
+          <option value="">Select a category</option>
+          {
+                categories.map(category => (
+                  <option key={category} value={category}>{category}</option>
+                ))
+              }
         </select>
         <button type="submit">Create Book</button>
       </form>
