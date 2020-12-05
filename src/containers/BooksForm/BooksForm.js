@@ -26,28 +26,25 @@ function BooksForm({ createBook }) {
       });
     }
     setTitle('');
-    setCategory('');
+    e.target.reset();
   };
 
   return (
-    <>
+    <div className="bookform">
+      <h2>ADD NEW BOOK</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="title">
-          Title
-          <input type="text" id="title" name="title" value={title} onChange={e => setTitle(e.target.value)} />
-        </label>
-        <strong>Select Category:</strong>
+        <input type="text" id="title" name="title" value={title} onChange={e => setTitle(e.target.value)} placeholder="Book title" />
         <select onChange={e => setCategory(e.target.value)}>
-          <option value="">Select a category</option>
+          <option value="" hidden="hidden">Categories</option>
           {
                 categories.map(category => (
                   <option key={category} value={category}>{category}</option>
                 ))
               }
         </select>
-        <button type="submit">Create Book</button>
+        <button type="submit">ADD BOOK</button>
       </form>
-    </>
+    </div>
   );
 }
 
