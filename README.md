@@ -16,6 +16,8 @@ Magic-books Inc. is a fictional company based in Germany. They have requested yo
 - CSS
 - ES6
 
+## Screenshot
+![screencapture-localhost-3000-2020-12-05-11_43_20](https://user-images.githubusercontent.com/29974825/101238292-515c8180-36f0-11eb-8e30-04ef54e405ee.png)
 ## Getting Started
 
 - Clone the project to your local machine;
