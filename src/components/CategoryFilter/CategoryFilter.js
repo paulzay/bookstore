@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 const categories = [
-  'All',
+  'Categories',
   'Action',
   'Biography',
   'Horror',

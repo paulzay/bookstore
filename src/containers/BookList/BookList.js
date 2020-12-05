@@ -9,28 +9,22 @@ import './booklist.css';
 function BookList({
   books, deleteBook, filter, changeFilter,
 }) {
-  const filteredBooks = (filter !== 'All') ? books.filter(book => book.category === filter) : books;
+  const filteredBooks = (filter !== 'Categories') ? books.filter(book => book.category === filter) : books;
   return (
     <>
-      <div>
+
+      <div className="header">
+        <h1>Bookstore CMS</h1>
+        <h2>BOOKS</h2>
         <CategoryFilter changeFilter={changeFilter} />
       </div>
-      <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Title</th>
-            <th scope="col">Category</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
+      <div>
+        {
           filteredBooks.map(book => (
             <Book key={book.id} book={book} deleteBook={deleteBook} />
           ))
         }
-        </tbody>
-      </table>
+      </div>
     </>
 
   );

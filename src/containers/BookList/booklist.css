@@ -1,3 +1,23 @@
-a {
-  color: white;
+.booklist {
+  background-color: #fff;
+}
+
+.header {
+  display: flex;
+  background-color: #fff;
+  padding: 23px 99px 27px 100px;
+}
+
+.header h1 {
+  color: #0290ff;
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.header h2 {
+  color: #121212;
+  font-size: 13px;
+  letter-spacing: 1.9px;
+  margin: 0 41px;
+  padding-top: 12px;
 }
