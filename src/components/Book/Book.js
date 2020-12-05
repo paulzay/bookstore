@@ -6,12 +6,38 @@ function Book({
   book, deleteBook,
 }) {
   return (
-    <tr>
-      <td>{book.id}</td>
-      <td>{book.title}</td>
-      <td>{book.category}</td>
-      <td><button type="submit" onClick={() => { deleteBook(book.id); }}>Delete Book</button></td>
-    </tr>
+    <div className="book" key={book.id}>
+      <div className="rw1">
+        <p />
+        <h3>{book.category}</h3>
+        <h2>{book.title}</h2>
+        <p>Author Name</p>
+        <div className="more">
+          <button className="submit" type="submit">Comments</button>
+          <button
+            className="submit"
+            type="submit"
+            onClick={() => { deleteBook(book.id); }}
+          >
+            Delete Book
+          </button>
+          <button className="submit" type="submit">Edit</button>
+        </div>
+      </div>
+      <div className="rw2">
+        <div className="progress-bar" />
+        <div className="cent">
+          <h2>64%</h2>
+          <p>Completed</p>
+        </div>
+      </div>
+      <div className="rw3">
+        <p>CURRENT CHAPTER</p>
+        <h2>Chapter 17</h2>
+        <button type="submit">UPDATE PROGRESS</button>
+      </div>
+    </div>
+
   );
 }
 
